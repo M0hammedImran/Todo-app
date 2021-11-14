@@ -1,0 +1,12 @@
+{
+    "extends": "fastify-tsconfig",
+    "compilerOptions": {
+        "outDir": "dist",
+        "paths": {
+            "@Plugin/*": ["./src/plugins/*"],
+            "@Routes/*": ["./src/routes/*"]
+        }
+    },
+    "compileOnSave": true,
+    "include": ["src/**/*.ts"]
+}
