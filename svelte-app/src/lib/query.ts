@@ -54,6 +54,7 @@ const initialState: QueryState = {
     isFetching: true,
     isFetched: false,
     isRefetching: false,
+    isLoading: true,
     isSuccess: false,
     isIdle: false,
     isFetchedAfterMount: false,
@@ -62,7 +63,6 @@ const initialState: QueryState = {
     isPreviousData: false,
     isRefetchError: false,
     isStale: false,
-    isLoading: true,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     refetch: async (_options) => {
         return {} as QueryObserverResult<any, any>;

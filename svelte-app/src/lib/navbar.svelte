@@ -23,7 +23,7 @@
         <nav class="ml-auto flex flex-wrap items-center text-base justify-center">
             <a href="/about" class="mr-5 hover:text-gray-900">About</a>
             <a
-                href="https://github.com/m0hammedimran"
+                href="https://github.com/m0hammedimran/todo-app"
                 target="_blank"
                 class="inline-flex items-center rounded-full bg-gray-100 border-0 focus:outline-none hover:bg-white "
                 ><GithubIcon /></a

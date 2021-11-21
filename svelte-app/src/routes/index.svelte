@@ -1,18 +1,19 @@
 <script lang="ts">
     import PlusIcon from '$lib/plus_icon.svelte';
-    import ReloadIcon from '$lib/reload_icon.svelte';
+    import ReloadIcon from '$lib/refetch_icon.svelte';
     import DisplayTodo from '$lib/display_todo.svelte';
-    import { Todo, useQuery } from '$lib/query';
+    import { store } from '$lib/store';
+    import { onMount } from 'svelte';
 
-    export const reload = () => {
-        refetch();
-    };
-    const todosUrl = 'http://localhost:5555/todo';
-    const result = useQuery<{ data: Todo[] }>('repoData', () => {
-        return fetch(todosUrl).then((res) => res.json());
+    $: ({ isLoading, error, todos, isRefetching } = $store);
+
+    onMount(async () => {
+        if ($store.todos.length) {
+            await store.refetch();
+            return;
+        }
+        await store.fetch();
     });
-
-    $: ({ isLoading, error, refetch, data, isRefetching } = $result);
 </script>
 
 <svelte:head>
@@ -31,11 +32,11 @@
 
     <button
         class="p-4 bg-gray-800 rounded h-14 flex items-center text-lg relative justify-center space-x-4"
-        on:click={() => refetch()}
+        on:click={() => store.refetch()}
     >
         <ReloadIcon className={` text-indigo-400 ${isRefetching ? 'animate-spin' : ''}`} />
         <span class="text-white font-medium">Reload</span>
     </button>
 </div>
 
-<DisplayTodo Todos={data?.data} {error} {isLoading} {refetch} />
+<DisplayTodo Todos={todos} {error} {isLoading} refetch={store.refetch} />
