@@ -9,6 +9,8 @@
     import XIcon from './x_icon.svelte';
 
     import type { Todo } from './query';
+    import TrashIcon from './trash_icon.svelte';
+    import { store } from './store';
 
     export let Todos: Todo[];
     export let isLoading: boolean;
@@ -68,13 +70,15 @@
                         </span>
                     </label>
 
-                    <a href="/todo/{todo.id}" class="title-font text-white">{todo.text}</a>
+                    <a href="/todo/{todo.id}" class="title-font text-white flex-1">{todo.text}</a>
 
                     {#if isMutating && mutationId === todo.id}
-                        <div class="ml-4 absolute top-1/2 -translate-y-1/2 right-4">
-                            <Loading isLoading={isMutating} />
-                        </div>
+                        <Loading isLoading={isMutating} className="text-indigo-400 mr-4" />
                     {/if}
+
+                    <button on:click={() => store.deleteTodo(todo.id)}>
+                        <TrashIcon className="text-red-500" />
+                    </button>
                 </div>
             </li>
         {/each}
