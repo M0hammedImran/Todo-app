@@ -25,8 +25,8 @@
             <a
                 href="https://github.com/m0hammedimran/todo-app"
                 target="_blank"
-                class="inline-flex items-center rounded-full bg-gray-100 border-0 focus:outline-none hover:bg-white "
-                ><GithubIcon /></a
+                class="inline-flex items-center rounded-full border-0 focus:outline-none"
+                ><GithubIcon className="hover:text-gray-600 text-gray-800 h-5 w-5" /></a
             >
         </nav>
     </div>
