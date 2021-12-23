@@ -1,14 +1,13 @@
 import AutoLoad from 'fastify-autoload';
 import { join } from 'path';
+import Cors from 'fastify-cors';
 import type { AutoloadPluginOptions } from 'fastify-autoload';
 import type { FastifyPluginAsync } from 'fastify';
 
 export type AppOptions = Partial<AutoloadPluginOptions>;
 
-const app: FastifyPluginAsync<AppOptions> = async (
-    fastify,
-    opts
-): Promise<void> => {
+const app: FastifyPluginAsync<AppOptions> = async (fastify, opts): Promise<void> => {
+    void fastify.register(Cors);
     void fastify.register(AutoLoad, {
         dir: join(__dirname, 'plugins'),
         options: opts,
